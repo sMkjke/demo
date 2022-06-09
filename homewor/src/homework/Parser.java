@@ -17,6 +17,7 @@ public class Parser {
                 System.out.print("Введите верное направление (U,D,R,L) либо EXIT: ");
             }
         }
+
         return command;
     }
 }
