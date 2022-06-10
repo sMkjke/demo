@@ -20,6 +20,7 @@ public class Parser {
                 System.out.println("Неправильная команда, повторите ввод");
             }
         }
+
         return command;
     }
 }
