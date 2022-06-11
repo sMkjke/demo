@@ -8,4 +8,8 @@ public abstract class Coffee {
     public String showInfo(){
         return description;
     }
+    public abstract String getType();
+    public abstract int getCookingTime();
+    public abstract int getDrinkingTime();
+
 }

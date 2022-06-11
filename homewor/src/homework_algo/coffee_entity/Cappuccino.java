@@ -7,6 +7,8 @@ public class Cappuccino extends Coffee {
     private int price;
     private int beans;
     private int amountOfMilk;
+    private int cookingTime;
+    private int drinkingTime;
 
     public Cappuccino() {
         type = "Cappuccino";
@@ -14,6 +16,8 @@ public class Cappuccino extends Coffee {
         this.price = 150;
         this.beans = 4;
         this.amountOfMilk = 25;
+        this.cookingTime = 200;
+        this.drinkingTime = 250;
     }
 
     @Override
@@ -29,5 +33,17 @@ public class Cappuccino extends Coffee {
                 this.beans,
                 this.amountOfMilk,
                 this.price);
+    }
+
+    @Override
+    public String getType() {
+        return this.type;
+    }
+    public int getCookingTime() {
+        return cookingTime;
+    }
+
+    public int getDrinkingTime() {
+        return drinkingTime;
     }
 }
