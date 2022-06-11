@@ -1,5 +1,7 @@
 package homework_algo;
 
+import homework_algo.coffee_entity.Coffee;
+
 public class Visitor {
 
     private String name;

@@ -1,6 +1,8 @@
-package homework_algo;
+package homework_algo.coffee_entity;
 
-public class IceCreamTopping implements Additable{
+import homework_algo.Additable;
+
+public class IceCreamTopping implements Additable {
 
     private final String name;
     private final int price;
