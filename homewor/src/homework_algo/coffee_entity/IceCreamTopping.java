@@ -4,7 +4,6 @@ package homework_algo.coffee_entity;
 public class IceCreamTopping extends ToppingDecorator {
 
     private Coffee coffee;
-    private String type;
     private int price;
 
     public IceCreamTopping(Coffee coffee) {
@@ -18,7 +17,7 @@ public class IceCreamTopping extends ToppingDecorator {
     }
 
     @Override
-    public String showIngredients() {
-        return coffee.showIngredients() + " " + "plus IceCream topping " + this.price;
+    public String showInfo() {
+        return coffee.showInfo() + " " + "plus IceCream topping " + this.price;
     }
 }

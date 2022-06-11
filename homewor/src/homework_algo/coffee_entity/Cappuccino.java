@@ -22,7 +22,7 @@ public class Cappuccino extends Coffee {
     }
 
     @Override
-    public String showIngredients() {
+    public String showInfo() {
         return String.format("It's %s coffee (%d Water, %d Beans, %d Milk) and price for it: %d",
                 this.type,
                 this.amountOfWater,

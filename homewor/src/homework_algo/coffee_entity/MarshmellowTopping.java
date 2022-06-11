@@ -1,13 +1,12 @@
 package homework_algo.coffee_entity;
 
-public class CaramelTopping extends ToppingDecorator {
-
+public class MarshmellowTopping extends ToppingDecorator {
     private Coffee coffee;
     private int price;
 
-    public CaramelTopping(Coffee coffee) {
+    public MarshmellowTopping(Coffee coffee) {
         this.coffee = coffee;
-        this.price = 30;
+        this.price = 100;
     }
 
     @Override
@@ -17,7 +16,6 @@ public class CaramelTopping extends ToppingDecorator {
 
     @Override
     public String showInfo() {
-        return coffee.showInfo() + " " + "plus Caramel topping " + this.price;
+        return coffee.showInfo() + " " + "plus Marshmellow topping " + this.price;
     }
-
 }
