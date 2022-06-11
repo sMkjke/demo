@@ -1,24 +1,24 @@
 package homework_algo.coffee_entity;
 
-import homework_algo.Additable;
 
-public class IceCreamTopping implements Additable {
+public class IceCreamTopping extends ToppingDecorator {
 
-    private final String name;
-    private final int price;
+    private Coffee coffee;
+    private String type;
+    private int price;
 
-    public IceCreamTopping(String name, int price) {
-        this.name = "Ice Cream";
-        this.price = 15;
+    public IceCreamTopping(Coffee coffee) {
+        this.coffee = coffee;
+        this.price = 30;
     }
 
     @Override
     public int getPrice() {
-        return this.price;
+        return coffee.getPrice() + this.price;
     }
 
     @Override
-    public String getName() {
-        return this.name;
+    public String showIngredients() {
+        return coffee.showIngredients() + " " + "plus IceCream topping " + this.price;
     }
 }

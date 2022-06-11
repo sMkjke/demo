@@ -2,7 +2,10 @@ package homework_algo.coffee_entity;
 
 public abstract class Coffee {
 
-    public abstract String getType();
+    String description = "Coffee";
+
     public abstract int getPrice();
-    public abstract String showIngredients();
+    public String showIngredients(){
+        return description;
+    }
 }

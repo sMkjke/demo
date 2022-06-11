@@ -9,7 +9,7 @@ public class Cappuccino extends Coffee {
     private int amountOfMilk;
 
     public Cappuccino() {
-        this.type = "Cappuccino";
+        type = "Cappuccino";
         this.amountOfWater = 100;
         this.price = 150;
         this.beans = 4;
@@ -17,33 +17,17 @@ public class Cappuccino extends Coffee {
     }
 
     @Override
-    public String getType() {
-        return this.type;
-    }
-
-    @Override
     public int getPrice() {
         return this.price;
     }
 
-//    @Override
-//    public void showIngredients() {
-//        System.out.printf("It's %s coffee (%n Water, %n Beans, %n Milk) and price for it: %n",
-//                this.type,
-//                this.amountOfWater,
-//                this.beans,
-//                this.amountOfMilk,
-//                this.price);
-//    }
-
     @Override
     public String showIngredients() {
-        return "Cappuccino{" +
-                "type='" + type + '\'' +
-                ", amountOfWater=" + amountOfWater +
-                ", price=" + price +
-                ", beans=" + beans +
-                ", amountOfMilk=" + amountOfMilk +
-                '}';
+        return String.format("It's %s coffee (%d Water, %d Beans, %d Milk) and price for it: %d",
+                this.type,
+                this.amountOfWater,
+                this.beans,
+                this.amountOfMilk,
+                this.price);
     }
 }
