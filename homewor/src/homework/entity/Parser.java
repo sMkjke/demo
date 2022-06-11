@@ -1,14 +1,25 @@
-package homework.utils;
+package homework.entity;
 
 import homework.entity.Command;
 
 import java.util.Scanner;
 
+/**
+ * The type Parser.
+ */
 public class Parser {
 
+    /**
+     * The constant scanner.
+     */
     final static Scanner scanner = new Scanner(System.in);
 
-    public static Command parseInput() {
+    /**
+     * Parse user input, if input is correct - return command or catch IllegalArgumentException
+     *
+     * @return the command which user input
+     */
+    protected Command parseInput() {
         String input;
         Command command = null;
         while (command == null) {
@@ -20,7 +31,6 @@ public class Parser {
                 System.out.println("Неправильная команда, повторите ввод");
             }
         }
-
         return command;
     }
 }
