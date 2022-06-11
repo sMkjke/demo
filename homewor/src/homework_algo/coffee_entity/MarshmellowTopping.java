@@ -29,11 +29,11 @@ public class MarshmellowTopping extends ToppingDecorator {
     }
     @Override
     public int getCookingTime() {
-        return coffee.getCookingTime() + 30;
+        return coffee.getCookingTime() + 3;
     }
 
     @Override
     public int getDrinkingTime() {
-        return coffee.getDrinkingTime() + 20;
+        return coffee.getDrinkingTime() + 2;
     }
 }

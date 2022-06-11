@@ -16,8 +16,8 @@ public class Cappuccino extends Coffee {
         this.price = 150;
         this.beans = 4;
         this.amountOfMilk = 25;
-        this.cookingTime = 200;
-        this.drinkingTime = 250;
+        this.cookingTime = 7;
+        this.drinkingTime = 12;
     }
 
     @Override

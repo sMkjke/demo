@@ -23,12 +23,12 @@ public class CaramelTopping extends ToppingDecorator {
 
     @Override
     public int getCookingTime() {
-        return coffee.getCookingTime() + 10;
+        return coffee.getCookingTime() + 1;
     }
 
     @Override
     public int getDrinkingTime() {
-        return coffee.getDrinkingTime() - 10;
+        return coffee.getDrinkingTime() - 1;
     }
 
     @Override

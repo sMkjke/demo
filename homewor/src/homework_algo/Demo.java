@@ -18,12 +18,13 @@ public class Demo {
         System.out.println();
 
         Visitor visitor = Visitor.newBuilder().
-                age(30).sex("male").drinkSpeed(10).
+                age(30).sex("male").drinkSpeed(1).
                 name("Oleg").
                 preferedDrink(new CaramelTopping(new Cappuccino())).build();
         System.out.println(visitor);
+        coffee = new MarshmellowTopping(coffee);
         int wait = (coffee.getCookingTime() + coffee.getDrinkingTime()) / visitor.getDrinkSpeed();
         System.out.println(visitor.getName() + " drinks " + coffee.getType() + " " + wait + " seconds");
-        Thread.sleep(wait/visitor.getDrinkSpeed() * 10);
+
     }
 }
