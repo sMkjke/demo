@@ -1,29 +1,27 @@
 package homework_algo;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class Queue {
 
-    private PriorityQueue queue = new PriorityQueue();
+    private ArrayDeque<Visitor> queue = new ArrayDeque<>();
 
-    public Queue(ArrayList queue) {
-        queue.addAll(queue);
+    public void addVisitorsToQueue(ArrayList<Visitor> list) {
+        queue.addAll(list);
     }
 
-//    public void addVisitorsToQueue(List<Visitor> visitorList) {
-//        queue.addAll(visitorList);
-//    }
-
-    public Visitor nextZVizitorFromQueue() {
+    public Visitor nextVisitor() {
         if (!queue.isEmpty()) {
-
-            return (Visitor) queue.peek();
-        } else {
-            System.out.println("The queue of visitors is empty");
+            return queue.peek();
         }
         return null;
+    }
+
+    public int queueSize(){
+        return queue.size();
+    }
+
+    public void deleteVisitorFromQueue(Visitor visitor){
+        queue.remove(visitor);
     }
 }

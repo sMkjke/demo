@@ -1,26 +1,13 @@
 package homework_algo;
 
 import homework_algo.coffee_entity.*;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
+
 
 public class Demo {
 
     public static void main(String[] args) throws InterruptedException {
-//        Coffee coffee = new Cappuccino();
-//        coffee = new CaramelTopping(coffee);
-//        System.out.printf("%s and total price = %d", coffee.showInfo(),coffee.getPrice());
-//        System.out.println();
-//        System.out.println(coffee.getType());
-//        System.out.println();
-//        Coffee coffee1 = new Americano();
-//        coffee1 = new IceCreamTopping(coffee1);
-//        System.out.println(coffee1.getType());
-//        System.out.printf("%s and total price = %d", coffee1.showInfo(),coffee1.getPrice());
-//        System.out.println();
-//
         Visitor oleg = Visitor.newBuilder().
                 age(30).sex("male").drinkSpeed(1).
                 name("Oleg").
@@ -32,11 +19,31 @@ public class Demo {
                 money(250).
                 preferedDrink(new CaramelTopping(new Americano())).build();
 
-        ArrayList<Visitor> list = new ArrayList<>();
-        list.add(oleg);
-        Cafe cafe = new Cafe(list);
-//        Cafe cafe = new Cafe(new ArrayList<>(List.of(oleg,vasia)));
-        cafe.startService();
+        Visitor alex = Visitor.newBuilder().
+                age(15).sex("male").drinkSpeed(1).
+                name("Alex").
+                money(300).
+                preferedDrink(new MarshmellowTopping(new Latte())).build();
+        Visitor kolya = Visitor.newBuilder().
+                age(72).sex("male").drinkSpeed(2).
+                name("Kolya").
+                money( 80).
+                preferedDrink(new Americano()).build();
 
+        Visitor andrey = Visitor.newBuilder().
+                age(30).sex("male").drinkSpeed(1).
+                name("Andrey").
+                money( 300).
+                preferedDrink(new IceCreamTopping(new Americano())).build();
+        Visitor masha = Visitor.newBuilder().
+                age(30).sex("female").drinkSpeed(3).
+                name("Masha").
+                money( 300).
+                preferedDrink(new IceCreamTopping(new Latte())).build();
+
+        ArrayList<Visitor> list = new ArrayList<>(List.of(alex,oleg,vasia,kolya,masha,andrey));
+
+        Cafe cafe = new Cafe();
+        cafe.startService(list);
     }
 }
