@@ -32,6 +32,21 @@ public class CaramelTopping extends ToppingDecorator {
     }
 
     @Override
+    public int getAmountOfWater() {
+        return coffee.getAmountOfWater() + 0;
+    }
+
+    @Override
+    public int getBeans() {
+        return coffee.getBeans() + 0;
+    }
+
+    @Override
+    public int getAmountOfMilk() {
+        return coffee.getAmountOfMilk() + 0;
+    }
+
+    @Override
     public String showInfo() {
         return coffee.showInfo() + " " + "plus Caramel topping " + this.price;
     }

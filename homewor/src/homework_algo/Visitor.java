@@ -31,7 +31,7 @@ public class Visitor {
                 ", sex='" + sex + '\'' +
                 ", age=" + age +
                 ", drinkSpeed=" + drinkSpeed +
-                ", preferedDrink=" + preferedDrink +
+                ", preferedDrink=" + preferedDrink.getType() +
                 ", money=" + money +
                 '}';
     }
@@ -42,6 +42,18 @@ public class Visitor {
 
     public String getName() {
         return name;
+    }
+
+    public Coffee getPreferedDrink() {
+        return preferedDrink;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 
     public static final class Builder {

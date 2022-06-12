@@ -46,4 +46,20 @@ public class Cappuccino extends Coffee {
     public int getDrinkingTime() {
         return drinkingTime;
     }
+
+    @Override
+    public int getAmountOfWater() {
+        return this.amountOfWater;
+    }
+
+    @Override
+    public int getBeans() {
+        return this.beans;
+    }
+
+    @Override
+    public int getAmountOfMilk() {
+        return this.amountOfMilk;
+    }
+
 }

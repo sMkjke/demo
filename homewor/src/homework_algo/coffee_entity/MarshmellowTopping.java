@@ -36,4 +36,19 @@ public class MarshmellowTopping extends ToppingDecorator {
     public int getDrinkingTime() {
         return coffee.getDrinkingTime() + 2;
     }
+
+    @Override
+    public int getAmountOfWater() {
+        return coffee.getAmountOfWater() + 0;
+    }
+
+    @Override
+    public int getBeans() {
+        return coffee.getBeans() + 0;
+    }
+
+    @Override
+    public int getAmountOfMilk() {
+        return coffee.getAmountOfMilk() + 0;
+    }
 }

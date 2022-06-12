@@ -10,5 +10,8 @@ public abstract class Coffee {
     public abstract String getType();
     public abstract int getCookingTime();
     public abstract int getDrinkingTime();
+    public abstract int getAmountOfWater();
+    public abstract int getBeans();
+    public abstract int getAmountOfMilk();
 
 }
