@@ -3,8 +3,6 @@ package homework_algo;
 import homework_algo.coffee_entity.Coffee;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -12,17 +10,30 @@ public class Cafe {
 
     final private Kitchen kitchen;
     final private Queue queue;
-    private List<Visitor> visitorsDrinkingCoffee = Collections.synchronizedList(new ArrayList<>());
+    private VisitorsDrinkingCoffee visitorsDrinkingCoffee;
 
 
     public Cafe() {
         this.kitchen = new Kitchen();
         this.queue = new Queue();
+        this.visitorsDrinkingCoffee = new VisitorsDrinkingCoffee();
     }
 
+    /**
+     * Start service.
+     * Manage the cafe - if we have some people in Queue - we should serve them.
+     * And checks kitchen is enough ingredients and is visitor has enough money to buy coffee.
+     * Give coffee to visitor based of his choise and after delete from Queue
+     * and add to visitors whos drinking coffee (VisitorsDrinkingCoffee).
+     *
+     * @param list the list (used by class Queue(realised by ArrayDeque))
+     * @throws InterruptedException the interrupted exception because Visitors uses concurrency
+     */
     public void startService(final ArrayList<Visitor> list) throws InterruptedException {
         queue.addVisitorsToQueue(list);
-
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("CAFE GRUSTNO AND VKUSNO OPENED!");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         while (queue.queueSize() > 0) {
             Visitor currentVisitor = queue.nextVisitor();
             System.out.println();
@@ -44,10 +55,11 @@ public class Cafe {
     private void startDrinking(final Visitor visitor, final Coffee coffee) throws InterruptedException {
         final ExecutorService executor = Executors.newFixedThreadPool(4);
         visitorsDrinkingCoffee.add(visitor);
-        visitor.setDrink(true);
         visitor.setChosenCoffee(coffee);
         executor.submit(visitor);
-        visitorsDrinkingCoffee.removeIf(i -> !i.isDrink());
+        if (!visitor.isDrink()) {
+            visitorsDrinkingCoffee.remove(visitor);
+        }
     }
 
     private boolean isEnoughMoney(final Visitor visitor, final int coffeeCost) {
@@ -60,7 +72,7 @@ public class Cafe {
         return false;
     }
 
-    public List<Visitor> getVisitorsDrinkingCoffee() {
+    public VisitorsDrinkingCoffee getVisitorsDrinkingCoffee() {
         return visitorsDrinkingCoffee;
     }
 }

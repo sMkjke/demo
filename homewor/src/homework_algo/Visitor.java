@@ -86,7 +86,7 @@ public class Visitor implements Runnable {
         }
     }
 
-    synchronized public void drinkCoffee() throws InterruptedException {
+        public void drinkCoffee() throws InterruptedException {
         this.isDrink = true;
         System.out.println();
         System.out.printf("%s start drinking the %s.", this.name, this.chosenCoffee.getType());
@@ -94,7 +94,6 @@ public class Visitor implements Runnable {
         Thread.sleep(1000 * chosenCoffee.getDrinkingTime() / this.getDrinkSpeed());
         System.out.println();
         this.isDrink = false;
-//        System.out.printf("%s finished with coffee", this.name);
         System.out.println();
         System.out.printf("%s is done with coffee and left the Cafe!", this.name);
     }
@@ -134,16 +133,6 @@ public class Visitor implements Runnable {
 
         public Builder preferedDrink(Coffee val) {
             preferedDrink = val;
-            return this;
-        }
-
-        public Builder isDrink(boolean val) {
-            isDrink = false;
-            return this;
-        }
-
-        public Builder chosenCoffee(Coffee val) {
-            chosenCoffee = val;
             return this;
         }
 

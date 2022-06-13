@@ -1,6 +1,7 @@
 package homework_algo;
 
 import homework_algo.coffee_entity.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,24 +28,23 @@ public class Demo {
         Visitor kolya = Visitor.newBuilder().
                 age(72).sex("male").drinkSpeed(2).
                 name("Kolya").
-                money( 80).
+                money(80).
                 preferedDrink(new Americano()).build();
 
         Visitor andrey = Visitor.newBuilder().
                 age(30).sex("male").drinkSpeed(3).
                 name("Andrey").
-                money( 300).
+                money(300).
                 preferedDrink(new IceCreamTopping(new Americano())).build();
         Visitor masha = Visitor.newBuilder().
                 age(30).sex("female").drinkSpeed(1).
                 name("Masha").
-                money( 300).
+                money(300).
                 preferedDrink(new IceCreamTopping(new Latte())).build();
 
-        ArrayList<Visitor> list = new ArrayList<>(List.of(alex,oleg,vasia,kolya,masha,andrey));
+        ArrayList<Visitor> list = new ArrayList<>(List.of(alex, oleg, vasia, kolya, masha, andrey));
 
         Cafe cafe = new Cafe();
         cafe.startService(list);
-//        System.out.println(cafe.getVisitorsDrinkingCoffee());
     }
 }
