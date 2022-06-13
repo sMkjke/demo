@@ -24,4 +24,8 @@ public class Queue {
     public void deleteVisitorFromQueue(Visitor visitor){
         queue.remove(visitor);
     }
+
+    public void deleteAllFromQueue(){
+        queue.clear();
+    }
 }

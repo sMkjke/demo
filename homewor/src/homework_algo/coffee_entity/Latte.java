@@ -10,7 +10,7 @@ public class Latte extends Coffee {
     private int drinkingTime;
 
     public Latte() {
-        type = "Latte";
+        this.type = "Latte";
         this.amountOfWater = 100;
         this.price = 170;
         this.beans = 3;

@@ -6,7 +6,7 @@ public class CaramelTopping extends ToppingDecorator {
     private int price;
     private String type;
 
-    public CaramelTopping(Coffee coffee) {
+    public CaramelTopping(final Coffee coffee) {
         this.coffee = coffee;
         this.price = 30;
         this.type = "Caramel";
@@ -18,7 +18,7 @@ public class CaramelTopping extends ToppingDecorator {
     }
 
     public String getType() {
-        return coffee.getType() + type;
+        return coffee.getType() + " with " + this.type;
     }
 
     @Override

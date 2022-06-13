@@ -1,6 +1,10 @@
 package homework_algo;
 
+import homework_algo.coffee_entity.Coffee;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -8,7 +12,7 @@ public class Cafe {
 
     final private Kitchen kitchen;
     final private Queue queue;
-    private ArrayList<Visitor> visitorsDrinkingCoffee = new ArrayList<>();
+    private List<Visitor> visitorsDrinkingCoffee = Collections.synchronizedList(new ArrayList<>());
 
 
     public Cafe() {
@@ -16,45 +20,41 @@ public class Cafe {
         this.queue = new Queue();
     }
 
-    public void startService(ArrayList<Visitor> list) throws InterruptedException {
-        final ExecutorService executor = Executors.newFixedThreadPool(4);
+    public void startService(final ArrayList<Visitor> list) throws InterruptedException {
         queue.addVisitorsToQueue(list);
-        boolean isWorks;
+
         while (queue.queueSize() > 0) {
             Visitor currentVisitor = queue.nextVisitor();
+            System.out.println();
+            System.out.printf("%s wants to order his/her favourite coffee %s",
+                    currentVisitor.getName(), currentVisitor.getPreferedDrink().getType());
+            System.out.println();
             if (isEnoughMoney(currentVisitor, currentVisitor.getPreferedDrink().getPrice())) {
-                isWorks = kitchen.giveCoffee(currentVisitor);
-                queue.deleteVisitorFromQueue(currentVisitor);
-                if (isWorks) {
-                    visitorsDrinkingCoffee.add(currentVisitor);
-                    executor.submit(currentVisitor);
+                if (kitchen.isEnoughIngredients(currentVisitor.getPreferedDrink())) {
+                    Coffee chosenCoffee = kitchen.giveCoffee(currentVisitor);
+                    startDrinking(currentVisitor, chosenCoffee);
+                    queue.deleteVisitorFromQueue(currentVisitor);
+//                    visitorsDrinkingCoffee.add(currentVisitor);
                 }
             }
             queue.deleteVisitorFromQueue(currentVisitor);
-            //TODO допили кофе - убрать из arraylist
-            if (!currentVisitor.isDrink()) {
-                System.out.println();
-                System.out.printf("%s has left from Cafe.", currentVisitor.getName());
-                System.out.println();
-            }
-
-//            currentVisitor = queue.nextVisitor();
-//            if (isWorks) {
-//                visitorsDrinkingCoffee.add(currentVisitor);
-//                executor.submit(currentVisitor);
-//            }
-//                if (!currentVisitor.isDrink() && !visitorsDrinkingCoffee.isEmpty()) {
-//                    visitorsDrinkingCoffee.remove(currentVisitor);
-//                    System.out.printf("%s is done with coffee and left the Cafe!", currentVisitor.getName());
-//                    System.out.println(visitorsDrinkingCoffee.toString());
-//                }
-
         }
         if (queue.queueSize() == 0)
             System.out.println("The queue of visitors is empty");
     }
 
-    private boolean isEnoughMoney(Visitor visitor, int coffeeCost) {
+    synchronized private void startDrinking(final Visitor visitor, final Coffee coffee) {
+        final ExecutorService executor = Executors.newFixedThreadPool(4);
+        visitorsDrinkingCoffee.add(visitor);
+        visitor.setChosenCoffee(coffee);
+        executor.submit(visitor);
+//        if (!visitor.isDrink()) {
+//            visitorsDrinkingCoffee.remove(visitor);
+//            System.out.println(visitor.getName() + " removed from cafe");
+//        }
+    }
+
+    private boolean isEnoughMoney(final Visitor visitor, final int coffeeCost) {
         if (visitor.getMoney() >= coffeeCost) {
             return true;
         }
@@ -62,5 +62,9 @@ public class Cafe {
                 visitor.getName(), visitor.getPreferedDrink().getType(), visitor.getPreferedDrink().getPrice(), visitor.getMoney());
         System.out.println();
         return false;
+    }
+
+    public List<Visitor> getVisitorsDrinkingCoffee() {
+        return visitorsDrinkingCoffee;
     }
 }

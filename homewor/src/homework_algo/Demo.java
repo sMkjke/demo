@@ -31,12 +31,12 @@ public class Demo {
                 preferedDrink(new Americano()).build();
 
         Visitor andrey = Visitor.newBuilder().
-                age(30).sex("male").drinkSpeed(1).
+                age(30).sex("male").drinkSpeed(3).
                 name("Andrey").
                 money( 300).
                 preferedDrink(new IceCreamTopping(new Americano())).build();
         Visitor masha = Visitor.newBuilder().
-                age(30).sex("female").drinkSpeed(3).
+                age(30).sex("female").drinkSpeed(1).
                 name("Masha").
                 money( 300).
                 preferedDrink(new IceCreamTopping(new Latte())).build();
@@ -45,5 +45,6 @@ public class Demo {
 
         Cafe cafe = new Cafe();
         cafe.startService(list);
+        System.out.println(cafe.getVisitorsDrinkingCoffee());
     }
 }

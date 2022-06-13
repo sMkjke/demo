@@ -6,7 +6,7 @@ public class MarshmellowTopping extends ToppingDecorator {
 
     private String type;
 
-    public MarshmellowTopping(Coffee coffee) {
+    public MarshmellowTopping(final Coffee coffee) {
         this.coffee = coffee;
         this.price = 100;
         this.type = "Marshmellow";
@@ -25,8 +25,9 @@ public class MarshmellowTopping extends ToppingDecorator {
     @Override
     public String getType() {
         return
-                coffee.getType() + this.type;
+                coffee.getType() + " with " + this.type;
     }
+
     @Override
     public int getCookingTime() {
         return coffee.getCookingTime() + 3;

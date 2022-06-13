@@ -11,7 +11,7 @@ public class Cappuccino extends Coffee {
     private int drinkingTime;
 
     public Cappuccino() {
-        type = "Cappuccino";
+        this.type = "Cappuccino";
         this.amountOfWater = 100;
         this.price = 150;
         this.beans = 4;

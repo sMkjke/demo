@@ -9,8 +9,9 @@ public class Visitor implements Runnable {
     private int age;
     private int drinkSpeed;
     private Coffee preferedDrink;
+    volatile private boolean isDrink;
+    private Coffee chosenCoffee;
     private int money;
-    private boolean isDrink;
 
     private Visitor(Builder builder) {
         name = builder.name;
@@ -18,8 +19,9 @@ public class Visitor implements Runnable {
         age = builder.age;
         drinkSpeed = builder.drinkSpeed;
         preferedDrink = builder.preferedDrink;
-        setMoney(builder.money);
         isDrink = builder.isDrink;
+        setChosenCoffee(builder.chosenCoffee);
+        setMoney(builder.money);
     }
 
     public static Builder newBuilder() {
@@ -59,12 +61,16 @@ public class Visitor implements Runnable {
         this.money = money;
     }
 
-    public boolean isDrink() {
-        return isDrink;
+    public Coffee getChosenCoffee() {
+        return chosenCoffee;
     }
 
-    public void setDrink(boolean drink) {
-        isDrink = drink;
+    public void setChosenCoffee(Coffee chosenCoffee) {
+        this.chosenCoffee = chosenCoffee;
+    }
+
+    public boolean isDrink() {
+        return isDrink;
     }
 
     @Override
@@ -77,15 +83,16 @@ public class Visitor implements Runnable {
     }
 
     synchronized public void drinkCoffee() throws InterruptedException {
-        System.out.println();
-        System.out.printf("%s start drinking his coffee", this.name);
         this.isDrink = true;
         System.out.println();
-        Thread.sleep(1000 * preferedDrink.getDrinkingTime() / this.getDrinkSpeed());
+        System.out.printf("%s start drinking the %s.", this.name, this.chosenCoffee.getType());
         System.out.println();
-        System.out.printf("%s finished with coffee", this.name);
-//        System.out.printf("%s is done with coffee and left the Cafe!", this.name);
+        Thread.sleep(1000 * chosenCoffee.getDrinkingTime() / this.getDrinkSpeed());
+        System.out.println();
         this.isDrink = false;
+        System.out.printf("%s finished with coffee", this.name);
+        System.out.println();
+        System.out.printf("%s is done with coffee and left the Cafe!", this.name);
     }
 
     public static final class Builder {
@@ -94,8 +101,9 @@ public class Visitor implements Runnable {
         private int age;
         private int drinkSpeed;
         private Coffee preferedDrink;
-        private int money;
         private boolean isDrink;
+        private Coffee chosenCoffee;
+        private int money;
 
         private Builder() {
         }
@@ -125,13 +133,18 @@ public class Visitor implements Runnable {
             return this;
         }
 
-        public Builder money(int val) {
-            money = val;
+        public Builder isDrink(boolean val) {
+            isDrink = false;
             return this;
         }
 
-        public Builder isDrink(boolean val) {
-            isDrink = val;
+        public Builder chosenCoffee(Coffee val) {
+            chosenCoffee = val;
+            return this;
+        }
+
+        public Builder money(int val) {
+            money = val;
             return this;
         }
 
@@ -139,53 +152,4 @@ public class Visitor implements Runnable {
             return new Visitor(this);
         }
     }
-
-
-//
-//    public static final class Builder {
-//        private String name;
-//        private String sex;
-//        private int age;
-//        private int drinkSpeed;
-//        private Coffee preferedDrink;
-//        private int money;
-//
-//        private Builder() {
-//        }
-//
-//        public Builder name(String val) {
-//            name = val;
-//            return this;
-//        }
-//
-//        public Builder sex(String val) {
-//            sex = val;
-//            return this;
-//        }
-//
-//        public Builder age(int val) {
-//            age = val;
-//            return this;
-//        }
-//
-//        public Builder drinkSpeed(int val) {
-//            drinkSpeed = val;
-//            return this;
-//        }
-//
-//        public Builder preferedDrink(Coffee val) {
-//            preferedDrink = val;
-//            return this;
-//        }
-//
-//        public Builder money(int val) {
-//            money = val;
-//            return this;
-//        }
-//
-//        public Visitor build() {
-//            return new Visitor(this);
-//        }
-//    }
-
 }

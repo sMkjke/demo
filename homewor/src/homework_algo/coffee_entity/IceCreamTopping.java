@@ -8,7 +8,7 @@ public class IceCreamTopping extends ToppingDecorator {
 
     private String type;
 
-    public IceCreamTopping(Coffee coffee) {
+    public IceCreamTopping(final Coffee coffee) {
         this.coffee = coffee;
         this.price = 30;
         this.type = "IceCream";
@@ -26,7 +26,7 @@ public class IceCreamTopping extends ToppingDecorator {
 
     @Override
     public String getType() {
-        return coffee.getType() + this.type;
+        return coffee.getType() + " with " + this.type;
     }
 
     @Override

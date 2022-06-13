@@ -10,7 +10,7 @@ public class Americano extends Coffee {
     private int drinkingTime;
 
     public Americano() {
-        type = "Americano";
+        this.type = "Americano";
         this.amountOfWater = 100;
         this.price = 100;
         this.beans = 6;
