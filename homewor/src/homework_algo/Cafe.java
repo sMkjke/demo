@@ -33,8 +33,6 @@ public class Cafe {
                 if (kitchen.isEnoughIngredients(currentVisitor.getPreferedDrink())) {
                     Coffee chosenCoffee = kitchen.giveCoffee(currentVisitor);
                     startDrinking(currentVisitor, chosenCoffee);
-                    queue.deleteVisitorFromQueue(currentVisitor);
-//                    visitorsDrinkingCoffee.add(currentVisitor);
                 }
             }
             queue.deleteVisitorFromQueue(currentVisitor);
@@ -43,15 +41,13 @@ public class Cafe {
             System.out.println("The queue of visitors is empty");
     }
 
-    synchronized private void startDrinking(final Visitor visitor, final Coffee coffee) {
+    private void startDrinking(final Visitor visitor, final Coffee coffee) throws InterruptedException {
         final ExecutorService executor = Executors.newFixedThreadPool(4);
         visitorsDrinkingCoffee.add(visitor);
+        visitor.setDrink(true);
         visitor.setChosenCoffee(coffee);
         executor.submit(visitor);
-//        if (!visitor.isDrink()) {
-//            visitorsDrinkingCoffee.remove(visitor);
-//            System.out.println(visitor.getName() + " removed from cafe");
-//        }
+        visitorsDrinkingCoffee.removeIf(i -> !i.isDrink());
     }
 
     private boolean isEnoughMoney(final Visitor visitor, final int coffeeCost) {

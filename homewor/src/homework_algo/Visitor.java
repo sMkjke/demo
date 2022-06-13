@@ -9,7 +9,7 @@ public class Visitor implements Runnable {
     private int age;
     private int drinkSpeed;
     private Coffee preferedDrink;
-    volatile private boolean isDrink;
+    private boolean isDrink;
     private Coffee chosenCoffee;
     private int money;
 
@@ -73,6 +73,10 @@ public class Visitor implements Runnable {
         return isDrink;
     }
 
+    public void setDrink(boolean drink) {
+        isDrink = drink;
+    }
+
     @Override
     public void run() {
         try {
@@ -90,7 +94,7 @@ public class Visitor implements Runnable {
         Thread.sleep(1000 * chosenCoffee.getDrinkingTime() / this.getDrinkSpeed());
         System.out.println();
         this.isDrink = false;
-        System.out.printf("%s finished with coffee", this.name);
+//        System.out.printf("%s finished with coffee", this.name);
         System.out.println();
         System.out.printf("%s is done with coffee and left the Cafe!", this.name);
     }

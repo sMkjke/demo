@@ -45,6 +45,6 @@ public class Demo {
 
         Cafe cafe = new Cafe();
         cafe.startService(list);
-        System.out.println(cafe.getVisitorsDrinkingCoffee());
+//        System.out.println(cafe.getVisitorsDrinkingCoffee());
     }
 }

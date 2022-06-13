@@ -6,26 +6,22 @@ public class Queue {
 
     private ArrayDeque<Visitor> queue = new ArrayDeque<>();
 
-    public void addVisitorsToQueue(ArrayList<Visitor> list) {
+    void addVisitorsToQueue(ArrayList<Visitor> list) {
         queue.addAll(list);
     }
 
-    public Visitor nextVisitor() {
+    Visitor nextVisitor() {
         if (!queue.isEmpty()) {
             return queue.peek();
         }
         return null;
     }
 
-    public int queueSize(){
+    int queueSize() {
         return queue.size();
     }
 
-    public void deleteVisitorFromQueue(Visitor visitor){
+    void deleteVisitorFromQueue(Visitor visitor) {
         queue.remove(visitor);
-    }
-
-    public void deleteAllFromQueue(){
-        queue.clear();
     }
 }
