@@ -55,6 +55,9 @@ public class Cafe {
         if (!visitor.isDrink()) {
             visitorsDrinkingCoffee.remove(visitor);
         }
+        if (visitorsDrinkingCoffee.list().isEmpty()) {
+            executor.shutdown();
+        }
     }
 
     private boolean isEnoughMoney(final Visitor visitor, final int coffeeCost) {
