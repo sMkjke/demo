@@ -2,7 +2,6 @@ package homework_algo;
 
 import homework_algo.coffee_entity.Coffee;
 
-import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -13,6 +12,9 @@ public class Cafe {
     private VisitorsDrinkingCoffee visitorsDrinkingCoffee;
 
 
+    /**
+     * Instantiates a new Cafe.
+     */
     public Cafe() {
         this.kitchen = new Kitchen();
         this.queue = new Queue();
@@ -26,33 +28,26 @@ public class Cafe {
      * Give coffee to visitor based of his choise and after delete from Queue
      * and add to visitors whos drinking coffee (VisitorsDrinkingCoffee).
      *
-     * @param list the list (used by class Queue(realised by ArrayDeque))
-     * @throws InterruptedException the interrupted exception because Visitors uses concurrency
+     * @param visitor the visitor
+     * @throws InterruptedException the interrupted exception
      */
-    public void startService(final ArrayList<Visitor> list) throws InterruptedException {
-        queue.addVisitorsToQueue(list);
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println("CAFE GRUSTNO AND VKUSNO OPENED!");
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        while (queue.queueSize() > 0) {
-            Visitor currentVisitor = queue.nextVisitor();
-            System.out.println();
-            System.out.printf("%s wants to order his/her favourite coffee %s",
-                    currentVisitor.getName(), currentVisitor.getPreferedDrink().getType());
-            System.out.println();
-            if (isEnoughMoney(currentVisitor, currentVisitor.getPreferedDrink().getPrice())) {
-                if (kitchen.isEnoughIngredients(currentVisitor.getPreferedDrink())) {
-                    Coffee chosenCoffee = kitchen.giveCoffee(currentVisitor);
-                    startDrinking(currentVisitor, chosenCoffee);
-                }
+    public void startService(final Visitor visitor) throws InterruptedException {
+        queue.addVisitorToQueue(visitor);
+        Visitor currentVisitor = queue.nextVisitor();
+        System.out.println();
+        System.out.printf("%s wants to order his/her favourite coffee %s",
+                currentVisitor.getName(), currentVisitor.getPreferedDrink().getType());
+        System.out.println();
+        if (isEnoughMoney(currentVisitor, currentVisitor.getPreferedDrink().getPrice())) {
+            if (kitchen.isEnoughIngredients(currentVisitor.getPreferedDrink())) {
+                Coffee chosenCoffee = kitchen.giveCoffee(currentVisitor);
+                startDrinking(currentVisitor, chosenCoffee);
             }
-            queue.deleteVisitorFromQueue(currentVisitor);
         }
-        if (queue.queueSize() == 0)
-            System.out.println("The queue of visitors is empty");
+        queue.deleteVisitorFromQueue(currentVisitor);
     }
 
-    private void startDrinking(final Visitor visitor, final Coffee coffee) throws InterruptedException {
+    private void startDrinking(final Visitor visitor, final Coffee coffee) {
         final ExecutorService executor = Executors.newFixedThreadPool(4);
         visitorsDrinkingCoffee.add(visitor);
         visitor.setChosenCoffee(coffee);
@@ -72,7 +67,9 @@ public class Cafe {
         return false;
     }
 
-    public VisitorsDrinkingCoffee getVisitorsDrinkingCoffee() {
-        return visitorsDrinkingCoffee;
+    public void greeting() {
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("CAFE GRUSTNO AND VKUSNO OPENED!");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
 }

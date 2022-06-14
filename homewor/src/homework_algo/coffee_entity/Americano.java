@@ -2,19 +2,19 @@ package homework_algo.coffee_entity;
 
 public class Americano extends Coffee {
 
-    private String type;
-    private int amountOfWater;
-    private int price;
-    private int beans;
-    private int cookingTime;
-    private int drinkingTime;
+    private final String type;
+    private final int amountOfWater;
+    private final int price;
+    private final int beans;
+    private final int cookingTime;
+    private final int drinkingTime;
 
     public Americano() {
         this.type = "Americano";
         this.amountOfWater = 100;
         this.price = 100;
         this.beans = 6;
-        this.cookingTime = 2;
+        this.cookingTime = 1;
         this.drinkingTime = 10;
     }
 

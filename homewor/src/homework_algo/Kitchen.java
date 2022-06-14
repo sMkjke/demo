@@ -26,7 +26,7 @@ public class Kitchen {
         System.out.println();
         System.out.printf("Wait %d seconds please.", chosenCoffee.getCookingTime());
         System.out.println();
-        Thread.sleep(1000 * chosenCoffee.getCookingTime());
+        Thread.sleep(1000L * chosenCoffee.getCookingTime());
         System.out.println();
         System.out.printf("%s enjoy ur coffee.", visitor.getName());
         System.out.println();
@@ -39,7 +39,7 @@ public class Kitchen {
                 this.milk >= chosenCoffee.getAmountOfMilk()) {
             return true;
         }
-        System.out.println("Kitchen havent enough ingredients!! Choose another coffee or call an admin");
+        System.out.println("Kitchen havent enough ingredients for this coffee!!");
         return false;
     }
 

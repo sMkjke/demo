@@ -2,13 +2,13 @@ package homework_algo.coffee_entity;
 
 public class Cappuccino extends Coffee {
 
-    private String type;
-    private int amountOfWater;
-    private int price;
-    private int beans;
-    private int amountOfMilk;
-    private int cookingTime;
-    private int drinkingTime;
+    private final String type;
+    private final int amountOfWater;
+    private final int price;
+    private final int beans;
+    private final int amountOfMilk;
+    private final int cookingTime;
+    private final int drinkingTime;
 
     public Cappuccino() {
         this.type = "Cappuccino";
@@ -16,8 +16,8 @@ public class Cappuccino extends Coffee {
         this.price = 150;
         this.beans = 4;
         this.amountOfMilk = 25;
-        this.cookingTime = 7;
-        this.drinkingTime = 12;
+        this.cookingTime = 2;
+        this.drinkingTime = 20;
     }
 
     @Override

@@ -2,9 +2,9 @@ package homework_algo.coffee_entity;
 
 public class CaramelTopping extends ToppingDecorator {
 
-    private Coffee coffee;
-    private int price;
-    private String type;
+    private final Coffee coffee;
+    private final int price;
+    private final String type;
 
     public CaramelTopping(final Coffee coffee) {
         this.coffee = coffee;

@@ -3,10 +3,9 @@ package homework_algo.coffee_entity;
 
 public class IceCreamTopping extends ToppingDecorator {
 
-    private Coffee coffee;
-    private int price;
-
-    private String type;
+    private final Coffee coffee;
+    private final int price;
+    private final String type;
 
     public IceCreamTopping(final Coffee coffee) {
         this.coffee = coffee;
@@ -31,12 +30,12 @@ public class IceCreamTopping extends ToppingDecorator {
 
     @Override
     public int getCookingTime() {
-        return coffee.getCookingTime() + 1;
+        return coffee.getCookingTime() + 2;
     }
 
     @Override
     public int getDrinkingTime() {
-        return coffee.getDrinkingTime() - 1;
+        return coffee.getDrinkingTime() + 5;
     }
 
     @Override

@@ -1,13 +1,13 @@
 package homework_algo.coffee_entity;
 
 public class Latte extends Coffee {
-    private String type;
-    private int amountOfWater;
-    private int price;
-    private int beans;
-    private int amountOfMilk;
-    private int cookingTime;
-    private int drinkingTime;
+    private final String type;
+    private final int amountOfWater;
+    private final int price;
+    private final int beans;
+    private final int amountOfMilk;
+    private final int cookingTime;
+    private final int drinkingTime;
 
     public Latte() {
         this.type = "Latte";
@@ -15,8 +15,8 @@ public class Latte extends Coffee {
         this.price = 170;
         this.beans = 3;
         this.amountOfMilk = 40;
-        this.cookingTime = 10;
-        this.drinkingTime = 9;
+        this.cookingTime = 5;
+        this.drinkingTime = 20;
     }
 
 

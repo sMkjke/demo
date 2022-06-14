@@ -3,15 +3,15 @@ package homework_algo;
 import homework_algo.coffee_entity.Coffee;
 
 public class Visitor implements Runnable {
-
-    private String name;
-    private String sex;
-    private int age;
-    private int drinkSpeed;
-    private Coffee preferedDrink;
+    private final String name;
+    private final String sex;
+    private final int age;
+    private final int drinkSpeed;
+    private final Coffee preferedDrink;
     private boolean isDrink;
     private Coffee chosenCoffee;
     private int money;
+
 
     private Visitor(Builder builder) {
         name = builder.name;
@@ -19,8 +19,6 @@ public class Visitor implements Runnable {
         age = builder.age;
         drinkSpeed = builder.drinkSpeed;
         preferedDrink = builder.preferedDrink;
-        isDrink = builder.isDrink;
-        setChosenCoffee(builder.chosenCoffee);
         setMoney(builder.money);
     }
 
@@ -86,12 +84,12 @@ public class Visitor implements Runnable {
         }
     }
 
-        public void drinkCoffee() throws InterruptedException {
+    public void drinkCoffee() throws InterruptedException {
         this.isDrink = true;
         System.out.println();
         System.out.printf("%s start drinking the %s.", this.name, this.chosenCoffee.getType());
         System.out.println();
-        Thread.sleep(1000 * chosenCoffee.getDrinkingTime() / this.getDrinkSpeed());
+        Thread.sleep(1000L * chosenCoffee.getDrinkingTime() / this.getDrinkSpeed());
         System.out.println();
         this.isDrink = false;
         System.out.println();
@@ -104,8 +102,6 @@ public class Visitor implements Runnable {
         private int age;
         private int drinkSpeed;
         private Coffee preferedDrink;
-        private boolean isDrink;
-        private Coffee chosenCoffee;
         private int money;
 
         private Builder() {

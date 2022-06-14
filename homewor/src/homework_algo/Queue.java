@@ -6,8 +6,8 @@ public class Queue {
 
     private ArrayDeque<Visitor> queue = new ArrayDeque<>();
 
-    void addVisitorsToQueue(ArrayList<Visitor> list) {
-        queue.addAll(list);
+    void addVisitorToQueue(Visitor visitor) {
+        queue.add(visitor);
     }
 
     Visitor nextVisitor() {
