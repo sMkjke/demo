@@ -7,12 +7,12 @@ public class Main {
         XPathExample xPathExample = new XPathExample();
 
         xPathExample.changeNode("//messagedate", "2022-06-16T22:00:00");
-        xPathExample.changeNode("//population", "5");
         xPathExample.changeNode("//surname", "Yeltcin");
         xPathExample.changeNode("//name", "Boris");
         xPathExample.changeNode("//patronymic", "Nikolayevich");
         xPathExample.changeNode("//email", "freedomrussia@ru.ru");
-        xPathExample.changeNode("//department", "dit");
+        xPathExample.changeNode("//department/name", "dit");
+        xPathExample.changeNode("//population", "5");
         xPathExample.writeXml(XPathExample.CHANGED_MESSAGE);
 
         System.out.printf("Validation: %b", xPathExample.getSimpleValidator().
