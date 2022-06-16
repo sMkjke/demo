@@ -15,7 +15,8 @@ public class Main {
         xPathExample.changeNode("//department", "dit");
         xPathExample.writeXml(XPathExample.CHANGED_MESSAGE);
 
-        System.out.println(xPathExample.getSimpleValidator().validate(XPathExample.XSD_MESSAGE,XPathExample.CHANGED_MESSAGE));
+        System.out.printf("Validation: %b", xPathExample.getSimpleValidator().
+                validate(XPathExample.XSD_MESSAGE, XPathExample.CHANGED_MESSAGE));
 
     }
 
