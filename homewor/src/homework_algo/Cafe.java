@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 
 public class Cafe {
 
-    final private Kitchen kitchen;
+    private Kitchen kitchen;
     final private Queue queue;
     private VisitorsDrinkingCoffee visitorsDrinkingCoffee;
 
@@ -16,7 +16,7 @@ public class Cafe {
      * Instantiates a new Cafe.
      */
     public Cafe() {
-        this.kitchen = new Kitchen();
+        final Kitchen kitchen = new Kitchen();
         this.queue = new Queue();
         this.visitorsDrinkingCoffee = new VisitorsDrinkingCoffee();
     }
@@ -48,6 +48,7 @@ public class Cafe {
     }
 
     private void startDrinking(final Visitor visitor, final Coffee coffee) {
+        Queue queue1 = new Queue();
         final ExecutorService executor = Executors.newFixedThreadPool(4);
         visitorsDrinkingCoffee.add(visitor);
         visitor.setChosenCoffee(coffee);
