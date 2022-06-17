@@ -10,6 +10,13 @@ import java.io.IOException;
 
 public class SimpleValidator {
 
+    /**
+     * Validate xml file with concrete schema
+     *
+     * @param xsdPath the xsd path
+     * @param xmlPath the xml path
+     * @return the boolean
+     */
     public boolean validate(String xsdPath, String xmlPath) {
         try {
             SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI); //создаем фабрику для схемы
