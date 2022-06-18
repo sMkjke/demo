@@ -1,12 +1,40 @@
+//plugins {
+//    id 'java'
+//}
+//
+//group 'org.example'
+//version '1.0-SNAPSHOT'
+//
+//repositories {
+//    mavenCentral()
+//}
+//
+//dependencies {
+//    implementation 'junit:junit:4.13.1'
+//    implementation 'com.google.code.gson:gson:2.8.9'
+//    implementation 'org.json:json:20220320'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+//    testImplementation 'xmlunit:xmlunit:1.6'
+//    testImplementation 'org.xmlunit:xmlunit-matchers:2.2.1'
+//}
+//
+//test {
+//    useJUnitPlatform()
+//}
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+wrapper {
+    distributionType = Wrapper.DistributionType.ALL
+    distributionUrl = 'https://nexus.mir/repository/raw-proxy-group/distributions/gradle-6.8.3-all.zip'
+    gradleVersion = gradleWrapperVersion
+}
 
 repositories {
-    mavenCentral()
+    maven { url 'https://nexus.mir/repository/maven-proxy-group' }
 }
 
 dependencies {
@@ -19,6 +47,27 @@ dependencies {
     testImplementation 'org.xmlunit:xmlunit-matchers:2.2.1'
 }
 
-test {
-    useJUnitPlatform()
+group = 'ru.nspk.sdet.school'
+version = '2.0.0-SNAPSHOT'
+
+jar {
+    baseName 'voronov_mv-sdet_school_xml_json'
+}
+
+publishing {
+    repositories {
+        maven {
+            url 'https://nexus.mir/repository/sdet-maven-snapshots'
+            credentials {
+                username 'sdet'
+                password 'sdet'
+            }
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            artifactId = jar.baseName
+            from components.java
+        }
+    }
 }
