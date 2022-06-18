@@ -1,3 +1,6 @@
+import json.GsonParser;
+import json.Users;
+
 import java.util.HashMap;
 
 public class Main {
@@ -17,10 +20,13 @@ public class Main {
 
         xPathExample.writeXml(XPathExample.CHANGED_MESSAGE);
 
-        System.out.printf("Validation: %b", xPathExample.getSimpleValidator().
+        System.out.printf("XML Validation: %b", xPathExample.getSimpleValidator().
                 validate(XPathExample.XSD_MESSAGE, XPathExample.CHANGED_MESSAGE));
 
+        System.out.println();
+        GsonParser gsonParser = new GsonParser();
+        Users users = gsonParser.parse(GsonParser.JSON_TEST);
+        System.out.println(users.toString());
     }
-
 }
 
